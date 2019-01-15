@@ -40,7 +40,7 @@ public class App {
 	public CSVParser buildCSVParser() throws IOException{
 		CSVParser res = null;
 		Reader in;
-		in = new FileReader(filename);
+		in = new FileReader("fichier.csv");
 		CSVFormat csvf = CSVFormat.DEFAULT.withCommentMarker('#').withDelimiter(';');
 		res = new CSVParser(in,csvf);
 		return res;
