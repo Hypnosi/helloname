@@ -1,4 +1,4 @@
-package fr.ul.miage.helloplus;
+package fr.ul.miage.helloname;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -22,7 +22,7 @@ public class App {
 	//attributs
 	private String filename;
 	//constructeurs
-	public App(String flename) {
+	public App(String filename) {
 		setFilename(filename);
 	}
 	
@@ -40,7 +40,8 @@ public class App {
 	public CSVParser buildCSVParser() throws IOException{
 		CSVParser res = null;
 		Reader in;
-		in = new FileReader("fichier.csv");
+		in = new FileReader(filename);
+
 		CSVFormat csvf = CSVFormat.DEFAULT.withCommentMarker('#').withDelimiter(';');
 		res = new CSVParser(in,csvf);
 		return res;
@@ -50,7 +51,6 @@ public class App {
 	public static void main(String[] args) {
 		//paramètres
 		String  filename = null;
-		// TODO Auto-generated method stub
 		//options
 		Options options = new Options();
 		Option input = new Option("i","input",true,"nom du fichier.csv contenant la liste des donn�es");
@@ -60,6 +60,7 @@ public class App {
 		CommandLineParser  parser = new DefaultParser();
 		try {
 			CommandLine line = parser.parse (options,args);
+
 			if (line.hasOption("i")) {
 				filename = line.getOptionValue("i");
 			}
